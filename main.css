@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1a1a1a;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.magic-ball {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 30% 30%, #222, #000);
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 
+        inset -10px -10px 20px rgba(0, 0, 0, 0.9),
+        inset 10px 10px 20px rgba(255, 255, 255, 0.1),
+        0 0 30px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(0, 0, 0, 0.6),
+        0 0 100px rgba(0, 0, 0, 0.3),
+        inset 0 20px 30px rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.magic-ball:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 
+        inset -10px -10px 20px rgba(0, 0, 0, 0.9),
+        inset 10px 10px 20px rgba(255, 255, 255, 0.1),
+        0 5px 40px rgba(0, 0, 0, 0.8),
+        0 8px 70px rgba(0, 0, 0, 0.6),
+        0 12px 120px rgba(0, 0, 0, 0.3),
+        inset 0 20px 30px rgba(255, 255, 255, 0.1);
+}
+
+.magic-ball::before {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.1),
+        transparent 60%
+    );
+    border-radius: 50%;
+    top: 10%;
+    left: 10%;
+    pointer-events: none;
+    filter: blur(2px);
+}
+
+.answer {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at center, 
+        rgba(0, 0, 0, 0.95),
+        rgba(0, 0, 0, 1)
+    );
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.8),
+        inset 0 0 40px rgba(0, 0, 0, 0.6),
+        0 0 10px rgba(255, 255, 255, 0.1);
+    overflow: visible;
+    animation: spin 20s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.answer::before {
+    content: '8';
+    position: absolute;
+    font-size: 180px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.15);
+    z-index: -1;
+    transform: translateZ(-50px);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.answer::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(0, 0, 255, 0.4);
+    clip-path: polygon(50% 15%, 0% 100%, 100% 100%);
+    filter: blur(3px);
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 0 20px rgba(0, 0, 255, 0.4),
+        inset 0 0 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-15px) translateZ(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer span {
+    position: absolute;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+    max-width: 100px;
+    text-align: center;
+    transform: translateZ(30px);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate3d(1, 1, 1, 0deg);
+    }
+    25% {
+        transform: rotate3d(1, 1, 1, 90deg);
+    }
+    50% {
+        transform: rotate3d(1, 1, 1, 180deg);
+    }
+    75% {
+        transform: rotate3d(1, 1, 1, 270deg);
+    }
+    100% {
+        transform: rotate3d(1, 1, 1, 360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes anti-spin {
+    0% {
+        transform: rotate(360deg);
+    }
+    20% {
+        transform: rotate(180deg);
+    }
+    40% {
+        transform: rotate(120deg);
+    }
+    60% {
+        transform: rotate(60deg);
+    }
+    80% {
+        transform: rotate(30deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #4a4a4a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #666;
+}
+
+.question-area {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px;
+    border: 2px solid #4a4a4a;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]::placeholder {
+    color: #888;
+}
+
+input[type="text"]:focus {
+    border-color: #666;
+}
